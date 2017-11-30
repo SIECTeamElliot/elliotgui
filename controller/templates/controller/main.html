@@ -1,0 +1,77 @@
+
+
+<div id="keys">
+	<button id="up" onmousedown="onMouseDown('up')" onmouseup="onMouseUp('up')">&#9650</button>
+	<button id="down" onmousedown="onMouseDown('down')" onmouseup="onMouseUp('down')">&#9660</button>
+	<button id="left" onmousedown="onMouseDown('left')" onmouseup="onMouseUp('left')">&#9664</button>
+	<button id="right" onmousedown="onMouseDown('right')" onmouseup="onMouseUp('right')">&#9654</button>
+</div>
+
+<div id="logs">
+
+</div>
+
+<div id="hidden" style="display: none;">
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+<script type="text/javascript">
+	function onMouseDown(type) {
+		if (typeof(type) === 'string') {
+			$('#hidden').load("event?type=" + type + "&trig=down");
+		}
+	}
+
+	function onMouseUp(type) {
+		if (typeof(type) === 'string') {
+			$('#hidden').load("event?type=" + type + "&trig=up");
+		}
+	}
+
+
+	$(document).keydown(function(e) {
+		switch(e.which) {
+		    case 37: // left	
+		    	onMouseDown("left");
+		    break;
+
+		    case 38: // up
+		    	onMouseDown("up"); 
+		    break;
+
+		    case 39: // right
+		    	onMouseDown("right"); 
+		    break;
+
+		    case 40: // down
+		    	onMouseDown("down"); 
+		    break;
+
+		    default: return; // exit this handler for other keys
+		}
+		e.preventDefault(); // prevent the default action (scroll / move caret)
+	});	
+
+	$(document).keyup(function(e) {
+		switch(e.which) {
+		    case 37: // left	
+		    	onMouseUp("left");
+		    break;
+
+		    case 38: // up
+		    	onMouseUp("up"); 
+		    break;
+
+		    case 39: // right
+		    	onMouseUp("right"); 
+		    break;
+
+		    case 40: // down
+		    	onMouseUp("down"); 
+		    break;
+
+		    default: return; // exit this handler for other keys
+		}
+		e.preventDefault(); // prevent the default action (scroll / move caret)
+	});	
+</script>

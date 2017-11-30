@@ -1,0 +1,18 @@
+<div id='logger_content'>
+	
+</div>
+
+<script type="text/javascript">
+	function writeInLog(msg) {
+		if (typeof(msg) === 'string') {
+			var bloc = document.createElement("P"); 
+			var text = document.createTextNode(msg);
+			bloc.appendChild(text); 
+			logs.appendChild(bloc);
+		}
+	}
+
+	function clearLog() {
+
+	}
+</script>
