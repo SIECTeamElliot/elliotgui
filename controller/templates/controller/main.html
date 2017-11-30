@@ -1,10 +1,6 @@
 
 
 <div id="keys">
-	<button id="up" onmousedown="onMouseDown('up')" onmouseup="onMouseUp('up')">&#9650</button>
-	<button id="down" onmousedown="onMouseDown('down')" onmouseup="onMouseUp('down')">&#9660</button>
-	<button id="left" onmousedown="onMouseDown('left')" onmouseup="onMouseUp('left')">&#9664</button>
-	<button id="right" onmousedown="onMouseDown('right')" onmouseup="onMouseUp('right')">&#9654</button>
 </div>
 
 <div id="logs">
@@ -15,36 +11,58 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
-<script type="text/javascript">
-	function onMouseDown(type) {
-		if (typeof(type) === 'string') {
+<script>
+	function Key(id, type, text) {
+		this.id = id;
+		this.type = type;
+		this.text = text;
+		this.state = false;
+
+		this.btn = document.createElement("BUTTON");
+		this.btn.id = this.id;
+
+		this.onMouseDown = function () {
 			$('#hidden').load("event?type=" + type + "&trig=down");
-		}
+		};
+
+		this.onMouseUp = function () {
+			$('#hidden').load("event?type=" + type + "&trig=up");	
+		};
+
+		this.btn.onmousedown = this.onMouseDown; 
+		this.btn.onmouseup = this.onMouseUp; 
+
+		this.btn.appendChild(document.createTextNode(this.text)); 
+
+		keys.appendChild(this.btn); 
 	}
 
-	function onMouseUp(type) {
-		if (typeof(type) === 'string') {
-			$('#hidden').load("event?type=" + type + "&trig=up");
-		}
-	}
-
+	var buttonUp = new Key("up", "up", "\u25b2"); 
+	var buttonDown = new Key("down", "down", "\u25bc"); 
+	var buttonLeft = new Key("left", "left", "\u25c0");
+	var buttonRight = new Key("right", "right", "\u25b6"); 
+	var buttonStop = new Key("stop", "stop", "\u25cf");
 
 	$(document).keydown(function(e) {
 		switch(e.which) {
+			case 32: 
+				window.buttonStop.onMouseDown(); 
+			break;
+
 		    case 37: // left	
-		    	onMouseDown("left");
+		    	window.buttonLeft.onMouseDown();
 		    break;
 
 		    case 38: // up
-		    	onMouseDown("up"); 
+		    	window.buttonUp.onMouseDown(); 
 		    break;
 
 		    case 39: // right
-		    	onMouseDown("right"); 
+		    	window.buttonRight.onMouseDown(); 
 		    break;
 
 		    case 40: // down
-		    	onMouseDown("down"); 
+		    	window.buttonDown.onMouseDown(); 
 		    break;
 
 		    default: return; // exit this handler for other keys
@@ -54,20 +72,24 @@
 
 	$(document).keyup(function(e) {
 		switch(e.which) {
+			case 32: 
+				window.buttonStop.onMouseUp(); 
+			break;
+
 		    case 37: // left	
-		    	onMouseUp("left");
+		    	window.buttonLeft.onMouseUp();
 		    break;
 
 		    case 38: // up
-		    	onMouseUp("up"); 
+		    	window.buttonUp.onMouseUp(); 
 		    break;
 
 		    case 39: // right
-		    	onMouseUp("right"); 
+		    	window.buttonRight.onMouseUp(); 
 		    break;
 
 		    case 40: // down
-		    	onMouseUp("down"); 
+		    	window.buttonDown.onMouseUp(); 
 		    break;
 
 		    default: return; // exit this handler for other keys

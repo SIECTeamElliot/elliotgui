@@ -26,10 +26,7 @@ class EventRegistry():
             Event('down'),
             Event('left'),
             Event('right'),
-            Event('kb_up'),
-            Event('kb_down'),
-            Event('kb_left'),
-            Event('kb_right'),
+            Event('stop'),
         ]
         self.event_dict = {
             ev.event_key: ev for ev in self.events
