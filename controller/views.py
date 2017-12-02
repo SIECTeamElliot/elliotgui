@@ -15,6 +15,7 @@ def main(request):
 def event(request):
     event = registry.event_dict.get(request.GET.get('type', None))
     trig = request.GET.get('trig', None)
+    value = request.GET.get('value', None)
 
     if event is None or trig is None:
         raise Http404
@@ -24,4 +25,4 @@ def event(request):
         else:
             event.trig_off()
 
-        return HttpResponse(event.event_key + " " + trig + " " + str(event.enable))
+        return HttpResponse("")

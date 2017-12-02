@@ -7,13 +7,22 @@ function Key(id, type, text) {
 	this.btn = document.createElement("BUTTON");
 	this.btn.id = this.id;
 
-	this.onMouseDown = function () {
-		$('#hidden').load("event?type=" + type + "&trig=down");
+	this._bind = function(fct, obj) {
+		return function() {
+			return fct.apply(obj, arguments);
+		};
 	};
 
-	this.onMouseUp = function () {
-		$('#hidden').load("event?type=" + type + "&trig=up");	
+	this._onMouseDown = function () {
+		$('#hidden').load("event?type=" + this.type + "&trig=down");
 	};
+
+	this._onMouseUp = function () {
+		$('#hidden').load("event?type=" + this.type + "&trig=up");	
+	};
+
+	this.onMouseDown = this._bind(this._onMouseDown, this); 
+	this.onMouseUp = this._bind(this._onMouseUp, this); 
 
 	this.btn.onmousedown = this.onMouseDown; 
 	this.btn.onmouseup = this.onMouseUp; 
