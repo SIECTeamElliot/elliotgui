@@ -1,0 +1,49 @@
+body
+{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#keys
+{
+	width: 120px;
+	height: 120px;
+	position: relative; 
+}
+
+button
+{
+	position: absolute;
+	height: 40px; 
+	width: 40px; 
+}
+
+#up
+{
+	top: 0px;
+	left: 40px; 
+}
+
+#stop
+{
+	top: 40px; 
+	left: 40px; 
+}
+
+#down
+{
+	bottom: 0px;
+	left: 40px; 
+}
+
+#left
+{
+	left: 0px;
+	top: 40px; 
+}
+
+#right
+{
+	right: 0px;
+	top: 40px;
+}

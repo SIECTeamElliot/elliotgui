@@ -26,6 +26,7 @@ SECRET_KEY = '1($)frgwlg3k17jg1d1nl8ho^(t*+^djsr3e4p7wt-@s*htw9j'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+ALLOWED_HOSTS += ['192.168.%s.%s' %(i,j) for i in range(256) for j in range (256)]
 
 
 # Application definition

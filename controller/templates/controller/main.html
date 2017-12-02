@@ -1,99 +1,57 @@
+<!DOCTYPE html>
 
+<html>
 
-<div id="keys">
-</div>
+    <head>
+        <meta charset="utf-8" />
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'controller/main.css' %}" />
 
-<div id="logs">
+        <title>Elliot Control Interface</title>
 
-</div>
+    </head>
+    <body style="height: 1000px;">
+		<div id="keys"></div>
 
-<div id="hidden" style="display: none;">
-</div>
+		<div id="logs"></div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
-<script>
-	function Key(id, type, text) {
-		this.id = id;
-		this.type = type;
-		this.text = text;
-		this.state = false;
+		<div id="hidden" style="display: none;"></div>
 
-		this.btn = document.createElement("BUTTON");
-		this.btn.id = this.id;
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+		<script type='text/javascript' src="{% static 'controller/keys.js' %}"></script>
+		<script type="text/javascript" src="{% static 'controller/virtualjoystick.js' %}"></script>
+		<script type="text/javascript">
+			var joystick = new VirtualJoystick(); 
 
-		this.onMouseDown = function () {
-			$('#hidden').load("event?type=" + type + "&trig=down");
-		};
+			function onMove(e) {
+				var ver_type; 
+				var hor_type; 
+				if(joystick.up()) {
+					ver_type = 'up'; 
+				} else if (joystick.down()) {
+					ver_type = 'down'; 
+				}
+				if(joystick.left()) {
+					ver_type = 'left'; 
+				} else if (joystick.right()) {
+					ver_type = 'right'; 
+				}
+				$('#hidden').load('event?type=' + ver_type + '&trig=down'); 
+				$('#hidden').load('event?type=' + hor_type + '&trig=down'); 
+			}
 
-		this.onMouseUp = function () {
-			$('#hidden').load("event?type=" + type + "&trig=up");	
-		};
+			joystick.addEventListener('touchStart', function(e) {
+				alert('lol');
+				joystick._container.addEventListener( 'touchmove' , onMove);
+				joystick._container.addEventListener( 'mousemove' , onMove); 
+			}); 
 
-		this.btn.onmousedown = this.onMouseDown; 
-		this.btn.onmouseup = this.onMouseUp; 
-
-		this.btn.appendChild(document.createTextNode(this.text)); 
-
-		keys.appendChild(this.btn); 
-	}
-
-	var buttonUp = new Key("up", "up", "\u25b2"); 
-	var buttonDown = new Key("down", "down", "\u25bc"); 
-	var buttonLeft = new Key("left", "left", "\u25c0");
-	var buttonRight = new Key("right", "right", "\u25b6"); 
-	var buttonStop = new Key("stop", "stop", "\u25cf");
-
-	$(document).keydown(function(e) {
-		switch(e.which) {
-			case 32: 
-				window.buttonStop.onMouseDown(); 
-			break;
-
-		    case 37: // left	
-		    	window.buttonLeft.onMouseDown();
-		    break;
-
-		    case 38: // up
-		    	window.buttonUp.onMouseDown(); 
-		    break;
-
-		    case 39: // right
-		    	window.buttonRight.onMouseDown(); 
-		    break;
-
-		    case 40: // down
-		    	window.buttonDown.onMouseDown(); 
-		    break;
-
-		    default: return; // exit this handler for other keys
-		}
-		e.preventDefault(); // prevent the default action (scroll / move caret)
-	});	
-
-	$(document).keyup(function(e) {
-		switch(e.which) {
-			case 32: 
-				window.buttonStop.onMouseUp(); 
-			break;
-
-		    case 37: // left	
-		    	window.buttonLeft.onMouseUp();
-		    break;
-
-		    case 38: // up
-		    	window.buttonUp.onMouseUp(); 
-		    break;
-
-		    case 39: // right
-		    	window.buttonRight.onMouseUp(); 
-		    break;
-
-		    case 40: // down
-		    	window.buttonDown.onMouseUp(); 
-		    break;
-
-		    default: return; // exit this handler for other keys
-		}
-		e.preventDefault(); // prevent the default action (scroll / move caret)
-	});	
-</script>
+			joystick.addEventListener('touchEnd', function(e) {
+				joystick._container.removeEventListener( 'touchmove' , onMove);
+				joystick._container.removeEventListener( 'mousemove' , onMove); 
+			}); 
+			
+		</script>
+		<script type="text/javascript"></script>
+	</body>
+</html>
