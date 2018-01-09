@@ -20,9 +20,9 @@ def event(request):
     if event is None or trig is None:
         raise Http404
     else:
-        if bool(trig):
+        if trig == 'down':
             event.trig_on()
-        else:
+        elif trig == 'up':
             event.trig_off()
 
         return HttpResponse("")
