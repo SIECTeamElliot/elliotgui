@@ -45,6 +45,8 @@ class EventRegistry():
             Event('stop', Callback('stop', self.log)),
             Event('yesPark', Callback('yesPark', self.log)),
             Event('noPark', Callback('noPark', self.log)),
+            Event('autonomous', Callback('autonomous', self.log)),
+            Event('manual', Callback('manual', self.log)),
         ]
         self.event_dict = {
             ev.event_key: ev for ev in self.events

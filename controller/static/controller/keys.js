@@ -66,6 +66,14 @@ function TrigKey(type) {
 		    case 42: // disagree to park
 				$('#no').trigger(type);
 		    break;
+
+		    case 43: // disagree to park
+				$('#autonomous').trigger(type);
+		    break;
+
+		    case 42: // disagree to park
+				$('#manual').trigger(type);
+		    break;
 		    default: return; // exit this handler for other keys
 		}
 		e.preventDefault(); // prevent the default action (scroll / move caret)
@@ -80,6 +88,9 @@ var buttonStop = new Key("stop", "stop", "\u25cf");
 
 var buttonYes = new Key("yesPark","yesPark","Park, please");
 var buttonNo = new Key("noPark","noPark","Do not park");
+
+var buttonAutonomous = new Key("autonomous","autonomous","Autonomous Drive");
+var buttonManual = new Key("manual","manual","Manual Drive");
 
 
 

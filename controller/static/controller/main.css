@@ -62,11 +62,22 @@ button
 {
 	top: 130px;
 	left: 0px;
+ 
 }
 #noPark
 {
 	top: 130px;
-	left: 90px;
+	left: 120px;
 }
 
-
+#autonomous
+{
+	top: 220px;
+	left: 0px;
+	width: 115px;
+}
+#manual
+{
+	top: 220px;
+	left: 120px;
+}
