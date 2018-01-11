@@ -17,51 +17,21 @@
 
 		<div id="hidden" style="display: none;"></div>
 
+
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
 		<script type='text/javascript' src="{% static 'controller/keys.js' %}"></script>
 		<script type="text/javascript" src="{% static 'controller/virtualjoystick.js' %}"></script>
 		<script type="text/javascript">
-			var joystick = new VirtualJoystick(); 
+		 
 
-			function SampledCallback(timeout_ms, func) {
-				var lastCallDate = 0; 
-				return function() {
-					var now = Date.now();
-					if( lastCallDate + timeout_ms < now ) {
-						lastCallDate = now; 
-						return func.apply(this, arguments);
-					}
-				}
-			}
+			 
+   		
 
-			function onMove(e) {
-				var Y_type; 
-				var X_type; 
-				if(joystick.up()) {
-					Y_type = 'up'; 
-				} else if (joystick.down()) {
-					Y_type = 'down'; 
-				}
-				if(joystick.left()) {
-					X_type = 'left'; 
-				} else if (joystick.right()) {
-					X_type = 'right'; 
-				}
-				if(typeof Y_type !== 'undefined') {
-					$('#hidden').load('event?type=' + Y_type + '&trig=down&value=' + joystick.deltaY()); 
-				}
-				if(typeof X_type !== 'undefined') {
-					$('#hidden').load('event?type=' + X_type + '&trig=down&value=' + joystick.deltaX()); 
-				}
-			}
-
-			joystick.addEventListener('pressed', function(e) {
-				joystick.addEventListener( 'moved' , SampledCallback(100, onMove));
-			}); 
-
-			joystick.addEventListener('released', function(e) {
-				joystick.removeEventListener( 'moved' , SampledCallback(100,onMove));
-			}); 
+	
 		</script>
+
+		
+<script>
+
 	</body>
 </html>

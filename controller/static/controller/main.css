@@ -6,44 +6,67 @@ body
 
 #keys
 {
-	width: 120px;
-	height: 120px;
+	width: 400px;
+	height: 400px;
 	position: relative; 
 }
 
 button
 {
 	position: absolute;
-	height: 40px; 
-	width: 40px; 
+	height: 80px; 
+	width: 80px; 
 }
 
 #up
 {
 	top: 0px;
-	left: 40px; 
+	left: 140px;
+	height: 40px; 
+	width: 40px; 
 }
 
 #stop
 {
 	top: 40px; 
-	left: 40px; 
+	left: 140px; 
+	height: 40px; 
+	width: 40px; 
 }
 
 #down
 {
-	bottom: 0px;
-	left: 40px; 
+	top: 80px;
+	left: 140px; 
+	height: 40px; 
+	width: 40px; 
 }
 
 #left
 {
-	left: 0px;
+	left: 100px;
 	top: 40px; 
+	height: 40px; 
+	width: 40px; 
 }
 
 #right
 {
-	right: 0px;
+	left: 180px;
 	top: 40px;
+	height: 40px; 
+	width: 40px; 
 }
+
+#yesPark
+{
+	top: 130px;
+	left: 0px;
+}
+#noPark
+{
+	top: 130px;
+	left: 90px;
+}
+
+

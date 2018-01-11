@@ -43,7 +43,10 @@ class EventRegistry():
             Event('left', Callback('left', self.log)),
             Event('right', Callback('right', self.log)),
             Event('stop', Callback('stop', self.log)),
+            Event('yesPark', Callback('yesPark', self.log)),
+            Event('noPark', Callback('noPark', self.log)),
         ]
         self.event_dict = {
             ev.event_key: ev for ev in self.events
         }
+

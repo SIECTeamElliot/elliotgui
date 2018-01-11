@@ -2,10 +2,12 @@ function Key(id, type, text) {
 	this.id = id;
 	this.type = type;
 	this.text = text;
+	
 	this.state = false;
 
 	this.btn = document.createElement("BUTTON");
 	this.btn.id = this.id;
+	
 
 	this._bind = function(fct, obj) {
 		return function() {
@@ -18,7 +20,8 @@ function Key(id, type, text) {
 	};
 
 	this._onMouseUp = function () {
-		$('#hidden').load("event?type=" + this.type + "&trig=up");	
+		$('#hidden').load("event?type=" + this.type + "&trig=up");
+		print("ce")	
 	};
 
 	this.onMouseDown = this._bind(this._onMouseDown, this); 
@@ -30,6 +33,7 @@ function Key(id, type, text) {
 	this.btn.appendChild(document.createTextNode(this.text)); 
 
 	keys.appendChild(this.btn); 
+	
 }
 
 function TrigKey(type) {
@@ -55,6 +59,13 @@ function TrigKey(type) {
 				$('#down').trigger(type);
 		    break;
 
+		    case 41: // agree to park
+				$('#yesPark').trigger(type);
+		    break;
+
+		    case 42: // disagree to park
+				$('#no').trigger(type);
+		    break;
 		    default: return; // exit this handler for other keys
 		}
 		e.preventDefault(); // prevent the default action (scroll / move caret)
@@ -66,6 +77,11 @@ var buttonDown = new Key("down", "down", "\u25bc");
 var buttonLeft = new Key("left", "left", "\u25c0");
 var buttonRight = new Key("right", "right", "\u25b6"); 
 var buttonStop = new Key("stop", "stop", "\u25cf");
+
+var buttonYes = new Key("yesPark","yesPark","Park, please");
+var buttonNo = new Key("noPark","noPark","Do not park");
+
+
 
 $(document).keydown( (new TrigKey('onmousedown')).f );	
 $(document).keyup( (new TrigKey('onmouseup')).f );	
