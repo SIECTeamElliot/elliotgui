@@ -1,3 +1,14 @@
+function SampledCallback(timeout_ms, func) {
+	var lastCallDate = 0; 
+	return function() {
+		var now = Date.now();
+		if( lastCallDate + timeout_ms < now ) {
+			lastCallDate = now; 
+			return func.apply(this, arguments);
+		}
+	}
+}
+
 function Key(id, type, text) {
 	this.id = id;
 	this.type = type;
@@ -15,20 +26,31 @@ function Key(id, type, text) {
 		};
 	};
 
-	this._onMouseDown = function () {
-		$('#hidden').load("event?type=" + this.type + "&trig=down");
-	};
+	this._onMouseDown = function () 
+			{
+				if (this.state == false)
+				{
+					window.alert(this.state);
+					$('#hidden').load("event?type=" + this.type + "&trig=down");
+					this.state = true; 
+				}
+			};
 
-	this._onMouseUp = function () {
-		$('#hidden').load("event?type=" + this.type + "&trig=up");
-		print("ce")	
-	};
+	this._onMouseUp = function() 
+			{
+				if (this.state == true)
+				{
+					window.alert(this.state); 
+					$('#hidden').load("event?type=" + this.type + "&trig=up");
+					this.state = false; 
+				}
+			};
 
 	this.onMouseDown = this._bind(this._onMouseDown, this); 
 	this.onMouseUp = this._bind(this._onMouseUp, this); 
 
-	this.btn.onmousedown = this.onMouseDown; 
-	this.btn.onmouseup = this.onMouseUp; 
+	this.btn.onmousedown = this._bind(this._onMouseDown, this); 
+	this.btn.onmouseup = this._bind(this._onMouseUp, this); 
 
 	this.btn.appendChild(document.createTextNode(this.text)); 
 
@@ -37,47 +59,48 @@ function Key(id, type, text) {
 }
 
 function TrigKey(type) {
-	this.f = function(e) {
-		switch(e.which) {
-			case 32: 
-				$('#stop').trigger(type);
-			break;
+	this.f = function(e)
+		{
+			switch(e.which) {
+				case 32: 
+					$('#stop').trigger(type);
+				break;
 
-		    case 37: // left	
-				$('#left').trigger(type);
-		    break;
+			    case 37: // left	
+					$('#left').trigger(type);
+			    break;
 
-		    case 38: // up
-				$('#up').trigger(type);
-		    break;
+			    case 38: // up
+					$('#up').trigger(type);
+			    break;
 
-		    case 39: // right
-				$('#right').trigger(type);
-		    break;
+			    case 39: // right
+					$('#right').trigger(type);
+			    break;
 
-		    case 40: // down
-				$('#down').trigger(type);
-		    break;
+			    case 40: // down
+					$('#down').trigger(type);
+			    break;
 
-		    case 41: // agree to park
-				$('#yesPark').trigger(type);
-		    break;
+			    case 41: // agree to park
+					$('#yesPark').trigger(type);
+			    break;
 
-		    case 42: // disagree to park
-				$('#no').trigger(type);
-		    break;
+			    case 42: // disagree to park
+					$('#no').trigger(type);
+			    break;
 
-		    case 43: // disagree to park
-				$('#autonomous').trigger(type);
-		    break;
+			    case 43: // disagree to park
+					$('#autonomous').trigger(type);
+			    break;
 
-		    case 42: // disagree to park
-				$('#manual').trigger(type);
-		    break;
-		    default: return; // exit this handler for other keys
-		}
-		e.preventDefault(); // prevent the default action (scroll / move caret)
-	}
+			    case 42: // disagree to park
+					$('#manual').trigger(type);
+			    break;
+			    default: return; // exit this handler for other keys
+			};
+			e.preventDefault(); // prevent the default action (scroll / move caret)
+		}; 
 }
 
 var buttonUp = new Key("up", "up", "\u25b2"); 
@@ -94,5 +117,5 @@ var buttonManual = new Key("manual","manual","Manual Drive");
 
 
 
-$(document).keydown( (new TrigKey('onmousedown')).f );	
-$(document).keyup( (new TrigKey('onmouseup')).f );	
+$(document).keydown( (new TrigKey('mousedown')).f );	
+$(document).keyup( (new TrigKey('mouseup')).f );	

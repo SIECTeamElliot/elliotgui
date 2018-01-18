@@ -10,15 +10,20 @@ class Event():
         self.event_key = event_key
         self.callback_trig = callback_trig
 
+    def is_trigged(self): 
+        return self.enable
+
     def trig_on(self):
-        self.enable = True
-        if callable(self.callback_trig):
-            self.callback_trig("on")
+        if not self.enable: 
+            self.enable = True
+            if callable(self.callback_trig):
+                self.callback_trig("on")
 
     def trig_off(self):
-        self.enable = False
-        if callable(self.callback_trig):
-            self.callback_trig("off")
+        if self.enable: 
+            self.enable = False
+            if callable(self.callback_trig):
+                self.callback_trig("off")
 
 class Callback:
     def __init__(self, event, logger):
