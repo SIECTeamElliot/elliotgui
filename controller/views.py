@@ -24,5 +24,6 @@ def event(request):
             event.trig_on()
         elif trig == 'up':
             event.trig_off()
+        
 
         return HttpResponse("")

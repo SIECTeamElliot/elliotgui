@@ -30,7 +30,6 @@ function Key(id, type, text) {
 			{
 				if (this.state == false)
 				{
-					window.alert(this.state);
 					$('#hidden').load("event?type=" + this.type + "&trig=down");
 					this.state = true; 
 				}
@@ -40,7 +39,6 @@ function Key(id, type, text) {
 			{
 				if (this.state == true)
 				{
-					window.alert(this.state); 
 					$('#hidden').load("event?type=" + this.type + "&trig=up");
 					this.state = false; 
 				}
