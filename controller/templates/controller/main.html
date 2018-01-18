@@ -8,9 +8,10 @@
         <link rel="stylesheet" href="{% static 'controller/main.css' %}" />
 
         <title>Elliot Control Interface</title>
-
+	
     </head>
     <body style="height: 1000px;">
+		<div id="dh"> </div>
 		<div id="keys"></div>
 
 		<div id="logs"></div>
@@ -22,7 +23,7 @@
 		<script type='text/javascript' src="{% static 'controller/keys.js' %}"></script>
 		<script type="text/javascript" src="{% static 'controller/virtualjoystick.js' %}"></script>
 		<script type="text/javascript">
-		 
+		 $('#dh').load("alert");
 
 			 
    		

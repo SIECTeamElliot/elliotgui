@@ -8,7 +8,7 @@ body
 {
 	width: 400px;
 	height: 400px;
-	position: relative; 
+	position: relative;
 }
 
 button
@@ -16,11 +16,12 @@ button
 	position: absolute;
 	height: 80px; 
 	width: 80px; 
+
 }
 
 #up
 {
-	top: 0px;
+	top: 100px;
 	left: 140px;
 	height: 40px; 
 	width: 40px; 
@@ -28,7 +29,7 @@ button
 
 #stop
 {
-	top: 40px; 
+	top: 140px; 
 	left: 140px; 
 	height: 40px; 
 	width: 40px; 
@@ -36,7 +37,7 @@ button
 
 #down
 {
-	top: 80px;
+	top: 180px;
 	left: 140px; 
 	height: 40px; 
 	width: 40px; 
@@ -45,7 +46,7 @@ button
 #left
 {
 	left: 100px;
-	top: 40px; 
+	top: 140px; 
 	height: 40px; 
 	width: 40px; 
 }
@@ -53,31 +54,31 @@ button
 #right
 {
 	left: 180px;
-	top: 40px;
+	top: 140px;
 	height: 40px; 
 	width: 40px; 
 }
 
 #yesPark
 {
-	top: 130px;
+	top: 230px;
 	left: 0px;
  
 }
 #noPark
 {
-	top: 130px;
+	top: 230px;
 	left: 120px;
 }
 
 #autonomous
 {
-	top: 220px;
+	top: 320px;
 	left: 0px;
 	width: 115px;
 }
 #manual
 {
-	top: 220px;
+	top: 320px;
 	left: 120px;
 }
