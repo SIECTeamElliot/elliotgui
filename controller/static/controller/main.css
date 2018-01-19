@@ -8,7 +8,7 @@ body
 {
 	width: 400px;
 	height: 400px;
-	position: relative;
+	position: absolute;
 }
 
 button
@@ -17,13 +17,12 @@ button
 	height: 80px; 
 	width: 80px; 
 	font-family:'Didact Gothic';
-
 }
 
 #up
 {
 	top: 100px;
-	left: 240px;
+	left: 140px;
 	height: 40px; 
 	width: 40px; 
 }
@@ -31,7 +30,7 @@ button
 #stop
 {
 	top: 140px; 
-	left: 240px; 
+	left: 140px; 
 	height: 40px; 
 	width: 40px; 
 }
@@ -39,14 +38,14 @@ button
 #down
 {
 	top: 180px;
-	left: 240px; 
+	left: 140px; 
 	height: 40px; 
 	width: 40px; 
 }
 
 #left
 {
-	left: 200px;
+	left: 100px;
 	top: 140px; 
 	height: 40px; 
 	width: 40px; 
@@ -54,7 +53,7 @@ button
 
 #right
 {
-	left: 280px;
+	left: 180px;
 	top: 140px;
 	height: 40px; 
 	width: 40px; 
@@ -63,39 +62,49 @@ button
 #yesPark
 {
 	top: 230px;
-	left: 100px;
+	left: 60px;
  
 }
 #noPark
 {
 	top: 230px;
-	left: 220px;
+	left: 180px;
 }
 
 #autonomous
 {
 	top: 320px;
-	left: 100px;
+	left: 25px;
 	width: 115px;
 }
 #manual
 {
 	top: 320px;
-	left: 220px;
+	left: 180px;
 }
 
 h1 a {
+    left: 100px;
+    top: 20px;
     color: #FCA205;
     font-family: 'Lobster';
+    position: absolute
+    
 }
 
 h3 b {
-	top: 100px;
+	
+	top: 415px;
 	color: #6dc066;
 	font-family:'Montserrat';
+	position: absolute
 }
 
 p c {
+	
+	top: 420px;
+        left: 20px;
 	font-family:'Montserrat';
+	position: absolute
 }
 
