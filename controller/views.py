@@ -29,7 +29,6 @@ def event(request):
         return HttpResponse("")
 
 def alert(request):
-	d="clara"
 	chain=" "
 	
 	with open("/home/quentin/Bureau/elliotgui-master/controller/lecture.txt", "r") as f:
@@ -40,8 +39,8 @@ def alert(request):
         		#print(line.strip())
 	return HttpResponse(
 		"""
-		<h3>Alert: </h3>
-		<p> %s </p>
+		<h3><b>Alert: </b></h3>
+		<p><c> %s </c></p>
 	"""% (chain))
 		
 	
