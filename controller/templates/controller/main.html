@@ -26,15 +26,25 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
 		
-		
-		<script type="text/javascript">
-		 $('#dh').load("alert");
-		</script>
 
 		<script type='text/javascript' src="{% static 'controller/keys.js' %}"></script>
 
-		
-<script>
+		<script type="text/javascript">
+			var timeout_ms = 500; 
+			var lastCallDate = 0;  
+
+			function fetchAlert()
+			{
+		 		var now = Date.now();
+				if( lastCallDate + timeout_ms < now ) {
+					lastCallDate = now; 
+					$('#dh').load("alert");
+				}
+			};
+
+
+			var tid = setInterval(fetchAlert, 500);
+		</script>
 
 	</body>
 </html>

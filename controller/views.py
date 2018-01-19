@@ -31,7 +31,7 @@ def event(request):
 def alert(request):
 	chain=" "
 	
-	with open("/home/quentin/Bureau/elliotgui-master/controller/lecture.txt", "r") as f:
+	with open("../lecture.txt", "r") as f:
 		for line in f.readlines():
 			
 			chain+="<br>"+line
